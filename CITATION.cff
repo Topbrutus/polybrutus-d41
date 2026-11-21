@@ -10,3 +10,5 @@ date-released: 2026-11-21
 license: MIT
 repository-code: https://github.com/Topbrutus/polybrutus-d41
 abstract: "Exact synthetic 46-point Euclidean labelled metric preserving all 990 frozen parent distances and independently checked ideal graph modes."
+doi: 10.5281/zenodo.24414346
+url: https://doi.org/10.5281/zenodo.24414346

@@ -23,6 +23,15 @@ python tests/independent_d41.py
 
 The two programs produce an identical SHA-256 for deterministic `results/certificate_d41.json`. The complete frozen D40 source tag and older ancestors are archived as ordinary files under `prior/d40/` using `git archive`, with no nested `.git` or submodules.
 
+## Official DOI and verified public release
+
+- **Official DOI:** [10.5281/zenodo.24414346](https://doi.org/10.5281/zenodo.24414346).
+- **Public Zenodo record:** https://zenodo.org/records/24414346, all 3 public files checked for exact sizes and MD5 against the original bytes.
+- **Frozen science tag:** [v0.1.0](https://github.com/Topbrutus/polybrutus-d41/tree/v0.1.0), source commit `17cc53498fd96d2e50fbdfa63df6705a4c062299`.
+- **Tag CI:** [GitHub Actions 44882862876](https://github.com/Topbrutus/polybrutus-d41/actions/runs/44882862876), success.
+- **Durable Memoria checkpoint:** https://github.com/Topbrutus/topbrutus_one/blob/main/memoria/checkpoints/POLYBRUTUS_D41_PUBLICATION_2026-11-21.md .
+- **Publications registry:** https://github.com/Topbrutus/topbrutus_one/blob/main/memoria/projects/POLYBRUTUS_X72_PUBLICATIONS_INDEX.md .
+
 ## Scientific materials and limitations
 
 - [Exact specification](SPECIFICATION_D41.md), [proof and adversarial tests](PREUVE_D41.md), [provenance](PROVENANCE.md).
