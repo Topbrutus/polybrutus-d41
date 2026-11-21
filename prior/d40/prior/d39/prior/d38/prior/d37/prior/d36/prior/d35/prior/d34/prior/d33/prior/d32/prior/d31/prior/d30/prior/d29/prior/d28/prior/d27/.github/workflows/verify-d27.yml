@@ -1,0 +1,28 @@
+name: Verify Polybrutus D27 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d27:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact SymPy arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Primary D27 exact-metric and graph verifier
+        run: python src/verify_d27.py
+      - name: Independent Fraction-based labelled-distance verifier
+        run: python tests/independent_d27.py
+      - name: Deterministic certificate unchanged
+        run: git diff --exit-code -- results/certificate_d27.json
+      - name: Frozen predecessor D26 SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d26/results/certificate_d26.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='1b109ad0e5e7df765a00ca3fc5566d9d3381c96be1dd2e83bfe76c049159707a'"

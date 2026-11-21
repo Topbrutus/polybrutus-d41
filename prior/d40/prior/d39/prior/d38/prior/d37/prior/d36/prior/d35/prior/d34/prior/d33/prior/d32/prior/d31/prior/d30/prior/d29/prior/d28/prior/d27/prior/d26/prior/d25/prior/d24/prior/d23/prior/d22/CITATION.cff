@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Cite the publicly verified Zenodo preprint DOI after release; otherwise cite the frozen GitHub source tag."
+title: "Polybrutus 22D: Exact Euclidean Completion and a Sixteenfold Weighted-Graph Mode"
+authors:
+  - family-names: "St-Pierre"
+    given-names: "Gabriel"
+    orcid: "https://orcid.org/0009-0009-9297-2336"
+version: "0.1.0"
+date-released: "2026-11-20"
+url: "https://github.com/Topbrutus/polybrutus-d22"
+license: MIT

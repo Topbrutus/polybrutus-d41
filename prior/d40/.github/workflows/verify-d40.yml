@@ -1,0 +1,28 @@
+name: Verify Polybrutus D40 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d40:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned exact arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Verify exact 990-pair Euclidean metric and ideal graph
+        run: python src/verify_d40.py
+      - name: Verify independent Fraction-based exact 990 labelled pairs
+        run: python tests/independent_d40.py
+      - name: Confirm certificate output deterministic
+        run: git diff --exit-code -- results/certificate_d40.json
+      - name: Guard frozen parent D39 certificate SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d39/results/certificate_d39.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='8cd6731c294537d74c04a3501fe0da76a2cee6d496a2d2d5dfcfb0a26bb9304f'"

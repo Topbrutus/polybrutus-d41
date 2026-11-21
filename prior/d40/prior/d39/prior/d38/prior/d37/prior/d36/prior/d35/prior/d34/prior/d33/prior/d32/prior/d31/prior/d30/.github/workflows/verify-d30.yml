@@ -1,0 +1,28 @@
+name: Verify Polybrutus D30 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d30:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact SymPy arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Reproduce D30 metric and ideal graph invariants
+        run: python src/verify_d30.py
+      - name: Independently rederive all 595 labelled pairs
+        run: python tests/independent_d30.py
+      - name: Deterministic certificate unchanged
+        run: git diff --exit-code -- results/certificate_d30.json
+      - name: Frozen D29 parent certificate digest
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d29/results/certificate_d29.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='d718f784bf20dccc1b8c08821466b352316054900fba20705bc28d79763a4731'"

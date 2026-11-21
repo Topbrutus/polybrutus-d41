@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the scientific release and Zenodo DOI when available."
+title: "Polybrutus 23D: Exact 28-point Euclidean metric and ideal weighted-graph spectrum"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d23
+abstract: "Exact labelled 28-point Euclidean metric and chosen ideal weighted-graph model, without physical dimension claims."

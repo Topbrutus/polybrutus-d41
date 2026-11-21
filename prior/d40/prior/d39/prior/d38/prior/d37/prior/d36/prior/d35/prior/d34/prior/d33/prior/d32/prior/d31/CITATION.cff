@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the scientific version and official Zenodo DOI."
+title: "Polybrutus 31D: Exact 36-Point Euclidean Metric and Twenty-Fivefold Ideal Graph Mode"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d31
+abstract: "Exact 36-point Euclidean labelled metric preserving 595 predecessor pairs and selected ideal weighted-graph modes."

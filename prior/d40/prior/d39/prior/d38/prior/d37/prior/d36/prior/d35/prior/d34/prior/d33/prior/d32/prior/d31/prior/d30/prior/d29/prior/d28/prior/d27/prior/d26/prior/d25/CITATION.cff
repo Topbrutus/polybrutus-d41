@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this release and its official Zenodo DOI."
+title: "Polybrutus 25D: Exact 30-Vertex Euclidean Metric and Nineteenfold Ideal Graph Mode"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d25
+abstract: "Exact independently verified Euclidean metric on thirty vertices, with 406 frozen parent distances preserved and chosen dimensionless graph eigenvalues."

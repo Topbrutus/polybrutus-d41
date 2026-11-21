@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this frozen scientific release using its official Zenodo DOI."
+title: "Polybrutus 40D: Exact 45-Point Euclidean Metric and Thirty-Fourfold Ideal Graph Mode"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-21
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d40
+abstract: "Exact 45-point Euclidean labelled metric preserving all 946 frozen predecessor pairs and stipulated ideal weighted graph modes."

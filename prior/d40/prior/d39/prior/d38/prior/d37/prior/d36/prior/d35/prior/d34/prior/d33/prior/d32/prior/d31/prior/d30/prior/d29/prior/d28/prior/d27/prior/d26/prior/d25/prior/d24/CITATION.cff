@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the scientific release and its Zenodo DOI when available."
+title: "Polybrutus 24D: Exact 29-Vertex Euclidean Metric and Eighteenfold Ideal Graph Mode"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d24
+abstract: "Exact reproducible Euclidean labelled metric on 29 points, with 378 parent labelled distances preserved and a chosen dimensionless graph model."

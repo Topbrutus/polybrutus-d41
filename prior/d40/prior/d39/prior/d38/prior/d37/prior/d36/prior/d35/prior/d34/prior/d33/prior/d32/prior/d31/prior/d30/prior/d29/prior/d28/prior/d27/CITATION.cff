@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite the scientific release and official Zenodo DOI."
+title: "Polybrutus 27D: Exact 32-Point Euclidean Metric and Twenty-Onefold Ideal Graph Modes"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d27
+abstract: "Exact 32-vertex labelled Euclidean metric preserving 465 parent pairs, and a chosen dimensionless weighted-graph spectrum."

@@ -1,0 +1,28 @@
+name: Verify Polybrutus D35 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d35:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Primary exact 780-pair metric and ideal graph
+        run: python src/verify_d35.py
+      - name: Independently check 780 Fraction-based labelled distances
+        run: python tests/independent_d35.py
+      - name: Assert deterministic certificate unchanged
+        run: git diff --exit-code -- results/certificate_d35.json
+      - name: Frozen D34 original certificate SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d34/results/certificate_d34.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='95274561481b735515a43dd185282cbe6b2424611f06efa5c6e5d100d433cfb6'"

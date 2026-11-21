@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "Please cite this scientific release and its official Zenodo DOI."
+title: "Polybrutus 28D: Exact 33-Point Euclidean Metric and Twenty-Twofold Ideal Graph Mode"
+type: software
+authors:
+  - family-names: St-Pierre
+    given-names: Gabriel
+version: "0.1.0"
+date-released: 2026-11-20
+license: MIT
+repository-code: https://github.com/Topbrutus/polybrutus-d28
+abstract: "Exact 33-point Euclidean metric preserving all 496 parent labelled distances and a chosen ideal complete weighted-graph spectrum."

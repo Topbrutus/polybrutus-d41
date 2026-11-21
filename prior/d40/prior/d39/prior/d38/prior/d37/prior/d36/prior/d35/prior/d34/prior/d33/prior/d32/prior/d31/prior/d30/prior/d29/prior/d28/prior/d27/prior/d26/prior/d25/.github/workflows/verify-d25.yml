@@ -1,0 +1,28 @@
+name: Verify Polybrutus D25 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d25:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install SymPy exact arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Primary exact D25 verification
+        run: python src/verify_d25.py
+      - name: Independent Fraction-based verification
+        run: python tests/independent_d25.py
+      - name: Reproducible certificate unchanged
+        run: git diff --exit-code -- results/certificate_d25.json
+      - name: Immutable D24 certificate checksum
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib; p=pathlib.Path('prior/d24/results/certificate_d24.json'); assert hashlib.sha256(p.read_bytes()).hexdigest()=='c2b1bbfd2c761871e81748fc5621c700443c7a7e7c9daba479d9ff18112c22eb'"

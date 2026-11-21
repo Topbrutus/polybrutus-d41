@@ -1,0 +1,28 @@
+name: Verify Polybrutus D31 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d31:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact mathematical arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Verify primary D31 metric and ideal graph
+        run: python src/verify_d31.py
+      - name: Independently verify Fraction-based 630 labels
+        run: python tests/independent_d31.py
+      - name: Check deterministic exact certificate unchanged
+        run: git diff --exit-code -- results/certificate_d31.json
+      - name: Assert frozen D30 parent certificate SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d30/results/certificate_d30.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='96c2f0693d849b2bab83c7ef4b25f647ecd3ee3a3ae460d3a32c5e9a73f1fb1c'"

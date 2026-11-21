@@ -1,0 +1,28 @@
+name: Verify Polybrutus D36 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d36:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install exact arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Primary D36 exact 820-pair metric and selected graph
+        run: python src/verify_d36.py
+      - name: Independently check all 820 rational labelled distances
+        run: python tests/independent_d36.py
+      - name: Assert certificate determinism
+        run: git diff --exit-code -- results/certificate_d36.json
+      - name: Frozen D35 original certificate SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d35/results/certificate_d35.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='7390c10f46132faeca0ccd8b52050d5ed899fbd4a078b9dd02407d922a4e4f22'"
