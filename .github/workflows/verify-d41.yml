@@ -1,0 +1,28 @@
+name: Verify Polybrutus D41 exact certificate
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+jobs:
+  exact-d41:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned exact arithmetic
+        run: python -m pip install sympy==1.14.0
+      - name: Verify exact 1,035-pair Euclidean metric and ideal graph
+        run: python src/verify_d41.py
+      - name: Verify independent Fraction-based exact 1,035 labelled pairs
+        run: python tests/independent_d41.py
+      - name: Check certificate deterministic byte output
+        run: git diff --exit-code -- results/certificate_d41.json
+      - name: Guard frozen parent D40 original certificate SHA-256
+        shell: bash
+        run: |
+          python -c "import hashlib,pathlib;p=pathlib.Path('prior/d40/results/certificate_d40.json');assert hashlib.sha256(p.read_bytes()).hexdigest()=='af361ae471397b6d91beed87fe65c268a7139c02fbc0187400152fb8b202ffca'"
